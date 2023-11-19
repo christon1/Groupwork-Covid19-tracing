@@ -2,9 +2,6 @@
 import tkinter as tk
 from tkinter import ttk, PhotoImage
 from buttons import Buttons
-import sys
-sys.path.append('/home/kali/covid-contact-tracing-app/')
-
 from logger import log_activity
 
 

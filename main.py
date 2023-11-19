@@ -1,6 +1,6 @@
 import tkinter as tk
 from startup_window import UI
-from logger import log_activity
+from contents.logger import log_activity
 
 
 if __name__ == "__main__":

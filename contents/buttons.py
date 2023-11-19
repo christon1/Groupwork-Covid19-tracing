@@ -3,9 +3,6 @@ import tkinter as tk
 from tkinter import messagebox
 import re, subprocess, csv, os
 import shutil
-import sys
-sys.path.append('/home/kali/covid-contact-tracing-app/')
-
 from logger import log_activity
 
 class Buttons:

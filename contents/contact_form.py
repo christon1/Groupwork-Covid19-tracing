@@ -4,9 +4,6 @@ from tkinter import ttk, PhotoImage
 import tkcalendar, subprocess
 from buttons import Buttons
 from contact_form2 import ContactForm2
-import sys
-sys.path.append('/home/kali/covid-contact-tracing-app/')
-
 from logger import log_activity
 
 
