@@ -2,6 +2,11 @@
 import tkinter as tk
 from tkinter import ttk, PhotoImage
 from buttons import Buttons
+import sys
+sys.path.append('/home/kali/covid-contact-tracing-app/')
+
+from logger import log_activity
+
 
 class ContactForm2:
     '''Contact Tracing Form - Second Window'''
@@ -42,6 +47,7 @@ class ContactForm2:
         # Create an "EXIT" button and bind it to the exit_application method
         self.__exit_button = tk.Button(self.__second_window, text="EXIT", width=10, height=2, bg="light pink", activebackground="orange", command=self.exit_application)
         self.__exit_button.pack(side="right", padx=10, pady=10)
+        log_activity("Contact Form 2 initialized")
 
     def exit_application(self):
         self.__second_window.destroy()

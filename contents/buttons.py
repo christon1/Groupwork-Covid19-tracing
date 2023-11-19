@@ -3,6 +3,10 @@ import tkinter as tk
 from tkinter import messagebox
 import re, subprocess, csv, os
 import shutil
+import sys
+sys.path.append('/home/kali/covid-contact-tracing-app/')
+
+from logger import log_activity
 
 class Buttons:
     def __init__(self, contact_form_instance, contact_form2_instance):
@@ -51,12 +55,14 @@ class Buttons:
                 # Write the data row
                 writer.writerow(list(user_input.values()) + [''])
                 tk.messagebox.showinfo("Success", "Saved Successfully!")
+            log_activity("Form  submitted")
 
             return True
 
         except Exception as e:
             # Display an error message if form validation fails or an error occurs
             tk.messagebox.showerror("Error", str(e))
+            log_activity("Form Failed")
 
             return False
 

@@ -4,6 +4,11 @@ from tkinter import ttk, PhotoImage
 import tkcalendar, subprocess
 from buttons import Buttons
 from contact_form2 import ContactForm2
+import sys
+sys.path.append('/home/kali/covid-contact-tracing-app/')
+
+from logger import log_activity
+
 
 class ContactForm:
     '''Contact Tracing Form'''
@@ -40,6 +45,7 @@ class ContactForm:
         # Create an "EXIT" button and bind it to the exit_application method
         self.__exit_button = tk.Button(self.__add_contact_window, text="EXIT", width=10, height=2, bg="light pink", activebackground="orange", command=self.__exit_application)
         self.__exit_button.pack(side="right", padx=10, pady=10)
+        log_activity("Contact Form 1 initialized")
 
     def __exit_application(self):
         self.__add_contact_window.destroy()
