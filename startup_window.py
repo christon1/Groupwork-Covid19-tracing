@@ -43,7 +43,7 @@ class UI:
         self.__canvas.create_text(160, 20, text="Department of QC DRRMO", font=("Arial", 10, "underline"), activefill="light gray")
         self.__canvas.create_text(850, 20, text="☰", font=("Arial", 15), activefill="white")
 
-        main_buttons = MainButtons(self.__canvas)
+        main_buttons = MainButtons(self.__canvas, self.__root)
 
         # [Icons] Privacy policy, contact us, and exit
         self.__canvas.create_text(150, 550, text="Privacy Policy", font=("Arial", 10), activefill="light gray")
