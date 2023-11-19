@@ -2,12 +2,19 @@
 import tkinter as tk
 from tkinter import ttk
 import csv
+from contents.encoder import Encoder
 
 class CsvReader:
     def __init__(self):
         # Navigate CSV file
+        self.encoder=Encoder()
+    
         self.csv_file_path = 'contact-tracing-data.csv'
+        self.encoder.decode(self.csv_file_path)
+
         self.csv_data = self.read_csv_file(self.csv_file_path)
+
+        self.encoder.encode(self.csv_file_path)
 
         # Create Tkinter application
         self.root = tk.Tk()
@@ -32,8 +39,7 @@ class CsvReader:
         headings = [
             "First Name", "Last Name", "Middle Initial", "Name Suffix", "Phone Number", "Email", "Address",
             "Vaccination Status", "COVID Symptoms", "Other Symptoms", "Tested for COVID", "Testing Date",
-            "Test Result", "Emergency Name", "Emergency Phone/Email", "Emergency Address", "Relationship",
-            "Travel History", "Travel Details"
+            "Test Result"
         ]
 
         # Create the Treeview widget to display the search results in a table

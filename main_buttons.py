@@ -1,6 +1,4 @@
 # main buttons.py
-from admin_login_window import AdminLoginWindow
-
 import os, subprocess, sys
 import tkinter as tk
 
@@ -8,10 +6,8 @@ from csv_reader import CsvReader
 from PIL import Image, ImageTk
 
 class MainButtons:
-    '''constains add contact and ADMINISTRATOR LOGIN buttons'''
-    def __init__(self, canvas,root):
-        self.__canvas = canvas
-        self.__root = root
+    '''constains add contact and search contact buttons'''
+    def __init__(self, canvas):
         # Add contact button with background
         self.__add_contact_frame = tk.Frame(canvas, bg="white", padx=5, pady=5)
         canvas.create_window(180, 300, window=self.__add_contact_frame, anchor='nw')
@@ -23,11 +19,11 @@ class MainButtons:
         self.__add_contact_label.bind("<Leave>", self.__on_button_hover)
         self.__add_contact_label.bind("<Button-1>", self.__open_contact_form)
     
-        # ADMINISTRATOR LOGIN button with background
+        # Search contact button with background
         self.__search_contact_frame = tk.Frame(canvas, bg="white", padx=5, pady=5)
         canvas.create_window(165, 370, window=self.__search_contact_frame, anchor='nw')
 
-        self.__search_contact_label = tk.Label(self.__search_contact_frame, text="ADMINISTRATOR LOGIN", font=("Arial", 12, "bold"))
+        self.__search_contact_label = tk.Label(self.__search_contact_frame, text="SEARCH CONTACT", font=("Arial", 12, "bold"))
         self.__search_contact_label.pack(fill="both", expand=True)
         self.__search_contact_label.original_bg_color = "light blue"  # Store the original background color
         self.__search_contact_label.bind("<Enter>", self.__on_button_hover)
@@ -45,14 +41,7 @@ class MainButtons:
     def __open_contact_form(self, event):
         # Open the contact form using subprocess
         subprocess.Popen(["python", "contents/contact_form.py"])
-        
+
     def __search_contacts(self, event):
-    # Open the AdminLoginWindow and pass the callback
-        login_window = AdminLoginWindow(self.__root, self.open_csv_reader)
-
-    def open_csv_reader(self):
-        # Open the CSV Reader Table after successful login
+        # Get the search term from the user input
         subprocess.Popen(["python", "csv_reader.py"])
-
-
-   

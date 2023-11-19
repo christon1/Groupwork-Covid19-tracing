@@ -3,9 +3,7 @@ import tkinter as tk
 from tkinter import ttk, PhotoImage
 import tkcalendar, subprocess
 from buttons import Buttons
-from contact_form2 import ContactForm2
-from logger import log_activity
-
+import hashlib
 
 class ContactForm:
     '''Contact Tracing Form'''
@@ -16,7 +14,7 @@ class ContactForm:
 
         self.__image = PhotoImage(file="image_widgets/ui.png")    # Load the image using PhotoImage
 
-        # Create a canvas inside the add_contact_window
+        # Create a canvas inside the add_contact_windowForm2
         self.__canvas = tk.Canvas(self.__add_contact_window, bd=0)
         self.__canvas.pack(fill="both", expand=True)
 
@@ -32,31 +30,30 @@ class ContactForm:
         self.__personal_info()
         self.__health_info()
 
-        self.__buttons_handler = Buttons(self, None)
+        self.__buttons_handler = Buttons(self)
 
         # Create the "NEXT" button and bind it to the next_window_and_submit_form method
-        self.__next_button = tk.Button(text="NEXT", width=10, height=2, activebackground="orange")
+        self.__next_button = tk.Button(text="SUBMIT", width=10, height=2, activebackground="orange")
         self.__next_button.pack(side="right", padx=10, pady=10)
         self.__next_button.bind("<Button-1>", self.__next_window_and_submit_form)
 
         # Create an "EXIT" button and bind it to the exit_application method
         self.__exit_button = tk.Button(self.__add_contact_window, text="EXIT", width=10, height=2, bg="light pink", activebackground="orange", command=self.__exit_application)
         self.__exit_button.pack(side="right", padx=10, pady=10)
-        log_activity("Contact Form 1 initialized")
 
     def __exit_application(self):
         self.__add_contact_window.destroy()
 
     def __next_window_and_submit_form(self, event):
         user_input = self.__buttons_handler.submit_form()
-        if user_input == True:
-            self.__second_window = tk.Toplevel(self.__add_contact_window)
-            app2 = ContactForm2(self.__second_window)
+        '''        if user_input == True:
+                    self.__second_window = tk.Toplevel(self.__add_contact_window)
+                    app2 = ContactForm2(self.__second_window)
 
-            # Keep the second window on top
-            self.__second_window.attributes("-topmost", True)
-            self.__second_window.focus_force()
-            self.__second_window.attributes("-topmost", False)
+                    # Keep the second window on top
+                    self.__second_window.attributes("-topmost", True)
+                    self.__second_window.focus_force()
+                    self.__second_window.attributes("-topmost", False)'''
     
     def __personal_info(self):
         '''Ask user of their personal information'''
@@ -167,7 +164,7 @@ class ContactForm:
         # Binding the enable_disable_other_symptoms_entry function to the "Other" checkbox
         self.__symptoms_checkboxes[-1][1].trace("w", enable_disable_other_symptoms_entry)
 
-        # COVID testing
+        # COVID testingimport hashlib
         self.__testing_label = ttk.Label(self.__health_frame, text="\t(C.) Have you been tested for COVID-19?")
         self.__testing_label.grid(row=len(self.__symptoms_checkboxes) + 7, column=0, sticky="w")
         self.__testing_choice = ttk.Combobox(self.__health_frame, values=["Yes", "No"])
