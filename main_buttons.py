@@ -1,5 +1,6 @@
 # main buttons.py
 from admin_login_window import AdminLoginWindow
+from UserLoginWindow import UserLoginWindow
 
 import os, subprocess, sys
 import tkinter as tk
@@ -41,11 +42,17 @@ class MainButtons:
         elif event.type == '8':  # Leave event
             event.widget.config(foreground="blue", background=event.widget.original_bg_color)
             event.widget.master.config(background=event.widget.original_bg_color)  # Reset the frame's background
-
-    def __open_contact_form(self, event):
-        # Open the contact form using subprocess
-        subprocess.Popen(["python", "contents/contact_form.py"])
         
+    def __open_contact_form(self, event):
+        # Modify this method to open the user login/registration window
+        # Assuming UserLoginWindow is a class that handles the login and registration process
+        login_window = UserLoginWindow(self.__root, self.after_login_open_contact_form)
+
+    def after_login_open_contact_form(self):
+        # This method opens the contact form after successful login or registration
+        subprocess.Popen(["python", "contents/contact_form.py"])
+ 
+    
     def __search_contacts(self, event):
     # Open the AdminLoginWindow and pass the callback
         login_window = AdminLoginWindow(self.__root, self.open_csv_reader)
