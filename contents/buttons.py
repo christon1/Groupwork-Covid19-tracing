@@ -59,7 +59,7 @@ class Buttons:
                 writer.writerow(list(user_input.values()) + [''])
                 tk.messagebox.showinfo("Success", "Saved Successfully!")
             log_activity("Form  submitted")
-            self.encoder.encode('contact-tracing-data.csv')
+
 
             with open('contact-tracing-data.csv','rb') as f:
                 content=f.read()
@@ -70,6 +70,8 @@ class Buttons:
             with open('md5','w') as mdf:
                 mdf.write(checksum)
 
+
+            self.encoder.encode('contact-tracing-data.csv')
             return True
 
         except Exception as e:
